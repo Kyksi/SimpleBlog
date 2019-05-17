@@ -16,8 +16,10 @@ class PostsController <ApplicationController
   def create
     @post = Post.new(post_params)
     if @post.save
+      flash[:success] = 'The article created successfully'
       redirect_to @post
     else
+      flash[:danger] = 'The article is not created'
       render :new
     end
   end
@@ -27,14 +29,17 @@ class PostsController <ApplicationController
 
   def update
     if @post.update_attributes(post_params)
+      flash[:success] = 'The article updated successfully'
       redirect_to @post
     else
+      flash[:danger] = 'The article is not updated'
       render :edit
     end
   end
 
   def destroy
     @post.destroy
+    flash[:success] = 'The article deleted successfully'
     redirect_to posts_path
   end
 
