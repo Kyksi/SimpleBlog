@@ -9,7 +9,7 @@
   </div>
 <%end %>
 
-<%= form_for @post do |f| %>
+<%= form_for @post, html: { multipart: true } do |f| %>
   <div class="form-group">
     <%= f.label :title %>
     <%= f.text_field :title, class: 'form-control' %>
@@ -22,11 +22,16 @@
 
   <div class="form-group">
     <%= f.label :body %>
-    <%= f.text_area :body, class: 'form-control' %>
+    <%= f.trix_editor :body, class: 'editor'%>
   </div>
 
-  <div class="form-group">
-    <%= f.submit 'Save', class: 'btn btn-primary' %>
-    <%= link_to 'Cancel', :back, class: 'btn btn-outline-secondary' %>
-  </div>
+    <div class="input-group">
+        <%= f.submit 'Save', class: 'btn btn-primary' %>
+        <%= link_to 'Cancel', :back, class: 'btn btn-outline-secondary' %>
+      <div class="custom-file col-sm-12">
+        <%= f.file_field :image, class: 'custom-file-input' %>
+        <label class="custom-file-label" for="customFileLang">Choose file</label>
+      </div>
+    </div>
+
 <% end %>
