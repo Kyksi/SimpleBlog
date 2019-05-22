@@ -5,7 +5,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <link rel="shortcut icon" href="https://img2.freepng.ru/20180407/jcw/kisspng-feather-computer-icons-quill-clip-art-fountain-pen-5ac8f3473a56e1.277673331523118919239.jpg">
+    <link rel="shortcut icon" href="https://cdn4.iconfinder.com/data/icons/seo-internet-2/128/1-02-512.png">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag 'https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css' %>
     <%= stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Montserrat' %>
@@ -18,17 +18,14 @@
   <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <!-- <h2 class="myblog"><img src="https://www.kallis.co.uk/wp-content/uploads/2018/04/blog-icon.png" width="40"> MyBlog </h2> -->
-      <h2 class="myblog"><img src="https://img2.freepng.ru/20180407/jcw/kisspng-feather-computer-icons-quill-clip-art-fountain-pen-5ac8f3473a56e1.277673331523118919239.jpg" width="40"> MyBlog </h2>
+      <h2 class="myblog"><img src="https://cdn4.iconfinder.com/data/icons/seo-internet-2/128/1-02-512.png" width="40"> Code-BloG </h2>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <%= link_to 'All Posts', posts_path, class: 'nav-link'%>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contacts</a>
-          </li>
+
         </ul>
         <form class="form-inline my-4 my-lg-0">
+          <%= link_to 'All Posts', posts_path, class: 'nav-link'%>
+
           <%= link_to 'New Post', new_post_path, class: 'btn btn-outline-primary' %>
         </form>
       </div>
@@ -48,7 +45,16 @@
           <% end %>
         </div>
       </div>
-      <%= yield %>
+      <div class="row">
+        <div class="col-md-8">
+          <%= yield %>
+        </div>
+        <div class="col-md-4">
+          <% tag_cloud(Tag.counts, %w{tag1 tag2 tag3 tag4 tag5}) do |tag, css_class| %>
+            <%= link_to tag.name, tag_path(tag.name), class: css_class %>
+          <% end %>
+        </div>
+      </div>
     </div>
   <script>
       $(document).ready(function () {

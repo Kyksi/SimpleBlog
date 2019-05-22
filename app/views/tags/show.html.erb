@@ -1,0 +1,7 @@
+<h2>Articles with tag <span class="badge badge-primary"><%= @tag.name %></span></h2>
+
+<% if @tag.posts.empty? %>
+  <h2>There no articles with tag <%= @tag.name %></h2>
+  <% else %>
+  <%= render @tag.posts %>
+<% end %>
